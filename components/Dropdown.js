@@ -81,9 +81,9 @@ const itemStyles = {
   color: violet.violet11,
   borderRadius: 3,
   display: "flex",
+  gap: ".4em",
   alignItems: "center",
-  height: 25,
-  padding: ".5rem 1rem",
+  padding: ".75rem 1rem",
   position: "relative",
   userSelect: "none",
 

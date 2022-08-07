@@ -1,5 +1,6 @@
 import useSWR from "swr";
 import dayjs from "dayjs";
+import Head from "next/head";
 import relativeTime from "dayjs/plugin/relativeTime";
 import { gray } from "@radix-ui/colors";
 import { Audio } from "svg-loaders-react";
@@ -29,14 +30,15 @@ const StatsBox = ({ title, number }) => (
     <Typography variant="h1" as="h4" css={{ color: "$primary" }}>
       {number}
     </Typography>
-    <Typography css={{ color: "$textLight", marginBlockStart: 8 }}>
-      {title}
-    </Typography>
+    <Typography css={{ color: "$textLight" }}>{title}</Typography>
   </Box>
 );
 
 const Stats = () => {
-  const { data, error } = useSWR(dataEndpoint, fetcher);
+  const { data, error } = useSWR(dataEndpoint, fetcher, {
+    revalidateOnFocus: false,
+    refreshInterval: 9999999999,
+  });
 
   if (!data)
     return (
@@ -48,73 +50,82 @@ const Stats = () => {
   if (error) return <Typography>Oops, Data Not Found!</Typography>;
 
   return (
-    <Box>
-      <Stack gap={2}>
-        <StatsBox number={data.total} title="Total downloads so far." />
-        <StatsBox
-          number={`${data.summaries.geo.top} (${data.summaries.geo.percent}%)`}
-          title={`Most number of downloads from a geo-location.`}
-        />
-        <StatsBox
-          number={`${data.summaries.os.top} (${data.summaries.os.percent}%)`}
-          title={`Most number of downloads from a OS.`}
-        />
-      </Stack>
+    <>
+      <Head>
+        <title>Stats | Nikgapps</title>
+      </Head>
+      <Box>
+        <Stack gap={2}>
+          <StatsBox number={data.total} title="Total downloads so far." />
+          <StatsBox
+            number={`${data.summaries.geo.top} (${data.summaries.geo.percent}%)`}
+            title={`Most number of downloads from a geo-location.`}
+          />
+          <StatsBox
+            number={`${data.summaries.os.top} (${data.summaries.os.percent}%)`}
+            title={`Most number of downloads from a OS.`}
+          />
+        </Stack>
 
-      <Box css={{ marginBlockStart: 40 }}>
-        <Typography
-          css={{ textAlign: "center", fontWeight: 600, marginBlockEnd: 12 }}
-        >
-          Top 30 Countries (By Downloads)
-        </Typography>
-        <table className="ui fixed unstackable striped table">
-          <thead>
-            <tr>
-              <th>Country</th>
-              <th>Downloads</th>
-            </tr>
-          </thead>
-          <tbody>
-            {data.countries.slice(0, 30).map((data) => (
+        <Box css={{ marginBlockStart: 40 }}>
+          <Typography
+            css={{ textAlign: "center", fontWeight: 600, marginBlockEnd: 12 }}
+          >
+            Top 30 Countries (By Downloads)
+          </Typography>
+          <table className="ui fixed unstackable striped table">
+            <thead>
               <tr>
-                <td>{data[0]}</td> <td>{data[1].toLocaleString()}</td>
+                <th>Country</th>
+                <th>Downloads</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
-      </Box>
+            </thead>
+            <tbody>
+              {data.countries.slice(0, 30).map((data) => (
+                <tr>
+                  <td>{data[0]}</td> <td>{data[1].toLocaleString()}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </Box>
 
-      <Box css={{ marginBlockStart: 40 }}>
-        <Typography
-          css={{ textAlign: "center", fontWeight: 600, marginBlockEnd: 12 }}
-        >
-          Top Operating Systems (By Downloads)
-        </Typography>
-        <table className="ui fixed unstackable striped table">
-          <thead>
-            <tr>
-              <th>OS</th>
-              <th>Downloads</th>
-            </tr>
-          </thead>
-          <tbody>
-            {data.oses.map((data) => (
+        <Box css={{ marginBlockStart: 40 }}>
+          <Typography
+            css={{ textAlign: "center", fontWeight: 600, marginBlockEnd: 12 }}
+          >
+            Top Operating Systems (By Downloads)
+          </Typography>
+          <table className="ui fixed unstackable striped table">
+            <thead>
               <tr>
-                <td>{data[0]}</td> <td>{data[1].toLocaleString()}</td>
+                <th>OS</th>
+                <th>Downloads</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
-      </Box>
+            </thead>
+            <tbody>
+              {data.oses.map((data) => (
+                <tr>
+                  <td>{data[0]}</td> <td>{data[1].toLocaleString()}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </Box>
 
-      <Box css={{ marginBlockStart: 30 }}>
-        <Typography
-          css={{ textAlign: "center", fontSize: ".8rem", color: "$textLight" }}
-        >
-          Data last updated at {dayjs().to(data.stats_updated)}.
-        </Typography>
+        <Box css={{ marginBlockStart: 30 }}>
+          <Typography
+            css={{
+              textAlign: "center",
+              fontSize: ".8rem",
+              color: "$textLight",
+            }}
+          >
+            Data last updated at {dayjs().to(data.stats_updated)}.
+          </Typography>
+        </Box>
       </Box>
-    </Box>
+    </>
   );
 };
 

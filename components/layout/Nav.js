@@ -1,5 +1,12 @@
 import Link from "next/link";
-import { IconMenu } from "@tabler/icons";
+import {
+  IconMenu,
+  IconInfoCircle,
+  IconCloudDownload,
+  IconChartBar,
+  IconUsers,
+  IconArticle,
+} from "@tabler/icons";
 import Box from "../Box";
 import Container from "../Container";
 import Flex from "../Flex";
@@ -10,6 +17,7 @@ import {
   DropdownMenuTrigger,
   DropdownMenuContent,
   DropdownMenuItem,
+  DropdownMenuItemIndicator,
 } from "../Dropdown";
 
 const Nav = () => {
@@ -38,9 +46,23 @@ const Nav = () => {
               </IconButton>
             </DropdownMenuTrigger>
 
-            <DropdownMenuContent withArrow sideOffset={5}>
-              <DropdownMenuItem>About</DropdownMenuItem>
-              <DropdownMenuItem>Downloads</DropdownMenuItem>
+            <DropdownMenuContent withArrow sideOffset={5} align="end">
+              <DropdownMenuItem>
+                <IconInfoCircle size={15} />
+                About
+              </DropdownMenuItem>
+              <DropdownMenuItem>
+                <IconCloudDownload size={15} /> Downloads
+              </DropdownMenuItem>
+              <DropdownMenuItem>
+                <IconChartBar size={15} /> Stats
+              </DropdownMenuItem>
+              <DropdownMenuItem>
+                <IconUsers size={15} /> Team
+              </DropdownMenuItem>
+              <DropdownMenuItem>
+                <IconArticle size={15} /> Blog
+              </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
         </Flex>
