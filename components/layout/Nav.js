@@ -60,6 +60,7 @@ const Nav = () => {
   const router = useRouter();
   return (
     <Box
+      as="header"
       css={{
         paddingBlock: "1.25rem",
         position: "relative",
@@ -69,10 +70,7 @@ const Nav = () => {
     >
       <Container>
         <Flex css={{ justifyContent: "space-between", alignItems: "center" }}>
-          <Typography
-            component="h1"
-            css={{ fontWeight: 800, fontSize: "1.275rem" }}
-          >
+          <Typography as="h1" css={{ fontWeight: 800, fontSize: "1.275rem" }}>
             <Link href="/">NikGapps</Link>
           </Typography>
 

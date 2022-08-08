@@ -3,7 +3,6 @@ import dayjs from "dayjs";
 import Head from "next/head";
 import relativeTime from "dayjs/plugin/relativeTime";
 import { gray } from "@radix-ui/colors";
-import { Audio } from "svg-loaders-react";
 import Box from "../components/Box";
 import Layout from "../components/layout";
 import Typography from "../components/Typography";
@@ -44,8 +43,10 @@ const Stats = () => {
 
   if (!data)
     return (
-      <Box css={{ width: 80, marginInline: "auto", marginBlock: 30 }}>
-        <Audio width="80px" fill={gray.gray8} />
+      <Box css={{ textAlign: "center", marginBlock: 30 }}>
+        <Typography variant="h3" as="h3">
+          Getting the latest Stats...
+        </Typography>
       </Box>
     );
 

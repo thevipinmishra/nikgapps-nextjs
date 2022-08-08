@@ -85,8 +85,9 @@ const Team = () => {
                 marginBlockStart: "1rem",
               }}
             >
-              {Object.entries(item.links).map((item) => (
+              {Object.entries(item.links).map((item, idx) => (
                 <Anchor
+                  key={idx}
                   href={item[1]}
                   target="_blank"
                   css={{ textDecoration: "underline" }}

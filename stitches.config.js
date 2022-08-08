@@ -21,6 +21,8 @@ export const {
       ...gray,
       ...mauveDark,
       primary: "$violet9",
+      primaryLight: "$violet5",
+      primaryLightContrast: "$gray12",
       primaryContrast: "$gray1",
       primaryDisabled: "$indigo4",
       bodyBg: "$gray2",

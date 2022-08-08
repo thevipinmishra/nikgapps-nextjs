@@ -20,6 +20,11 @@ const Typography = styled("p", {
         fontSize: "clamp(1.125rem, 5vw, 2rem)",
         lineHeight: "1.3",
       },
+      h4: {
+        fontWeight: 600,
+        fontSize: "clamp(1rem, 4vw, 1.25rem)",
+        lineHeight: "1.4",
+      },
     },
   },
 });

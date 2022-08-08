@@ -2,13 +2,16 @@ import { mauve } from "@radix-ui/colors";
 import Box from "../Box";
 import Container from "../Container";
 import Typography from "../Typography";
+import Footer from "./Footer";
 import Nav from "./Nav";
 
 export default function Layout({ children, withContent }) {
   return (
-    <Box>
+    <Box
+      css={{ display: "flex", flexDirection: "column", minBlockSize: "100vh" }}
+    >
       <Nav />
-      <Box as="main">
+      <Box as="main" css={{ flex: 1 }}>
         {withContent && (
           <Box css={{ paddingBlock: "2rem", textAlign: "center" }}>
             <Container>
@@ -50,6 +53,7 @@ export default function Layout({ children, withContent }) {
           <Container>{children}</Container>
         </Box>
       </Box>
+      <Footer />
     </Box>
   );
 }
