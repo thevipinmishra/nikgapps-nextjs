@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { useRouter } from "next/router";
 import {
   IconMenu,
   IconInfoCircle,
@@ -6,6 +7,7 @@ import {
   IconChartBar,
   IconUsers,
   IconArticle,
+  IconQuestionMark,
 } from "@tabler/icons";
 import Box from "../Box";
 import Container from "../Container";
@@ -17,10 +19,45 @@ import {
   DropdownMenuTrigger,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuItemIndicator,
 } from "../Dropdown";
 
+const ICON_SIZE = 16;
+
+const navLinks = [
+  {
+    anchor: "About",
+    href: "/about",
+    icon: <IconInfoCircle size={ICON_SIZE} />,
+  },
+  {
+    anchor: "Downloads",
+    href: "/downloads",
+    icon: <IconCloudDownload size={ICON_SIZE} />,
+  },
+  {
+    anchor: "Stats",
+    href: "/stats",
+    icon: <IconChartBar size={ICON_SIZE} />,
+  },
+  {
+    anchor: "Faqs",
+    href: "/faqs",
+    icon: <IconQuestionMark size={ICON_SIZE} />,
+  },
+  {
+    anchor: "Team",
+    href: "/team",
+    icon: <IconUsers size={ICON_SIZE} />,
+  },
+  {
+    anchor: "Blog",
+    href: "/blog",
+    icon: <IconArticle size={ICON_SIZE} />,
+  },
+];
+
 const Nav = () => {
+  const router = useRouter();
   return (
     <Box
       css={{
@@ -47,22 +84,15 @@ const Nav = () => {
             </DropdownMenuTrigger>
 
             <DropdownMenuContent withArrow sideOffset={5} align="end">
-              <DropdownMenuItem>
-                <IconInfoCircle size={15} />
-                About
-              </DropdownMenuItem>
-              <DropdownMenuItem>
-                <IconCloudDownload size={15} /> Downloads
-              </DropdownMenuItem>
-              <DropdownMenuItem>
-                <IconChartBar size={15} /> Stats
-              </DropdownMenuItem>
-              <DropdownMenuItem>
-                <IconUsers size={15} /> Team
-              </DropdownMenuItem>
-              <DropdownMenuItem>
-                <IconArticle size={15} /> Blog
-              </DropdownMenuItem>
+              {navLinks.map((item) => (
+                <DropdownMenuItem
+                  key={item.anchor}
+                  onClick={() => router.push(item.href)}
+                >
+                  {item.icon}
+                  {item.anchor}
+                </DropdownMenuItem>
+              ))}
             </DropdownMenuContent>
           </DropdownMenu>
         </Flex>

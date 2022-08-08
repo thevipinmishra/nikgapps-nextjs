@@ -9,7 +9,7 @@ const About = () => {
       <Head>
         <title>About | Nikgapps</title>
       </Head>
-      <Stack>
+      <Stack gap={2}>
         <Typography>
           NikGapps project started with the goal to provide custom gapps
           packages that suits everyone's needs. A package that a user needs but

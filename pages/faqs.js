@@ -6,7 +6,6 @@ import {
 } from "../components/Accordion";
 import { List, ListItem } from "../components/List";
 import Box from "../components/Box";
-import Container from "../components/Container";
 import Typography from "../components/Typography";
 import Button from "../components/Button";
 import Code from "../components/Code";
@@ -70,7 +69,9 @@ const Faqs = () => {
                 specific addon and not the whole gapps package.
               </ListItem>
             </List>
-            <Typography>You can checkout the more features, here</Typography>
+            <Typography css={{ marginBlockStart: 12 }}>
+              You can checkout the more features, here
+            </Typography>
           </AccordionContent>
         </AccordionItem>
 
@@ -135,7 +136,7 @@ const Faqs = () => {
               <ListItem>Dirty flash Rom</ListItem>
               <ListItem>Flash newer version of NikGapps</ListItem>
             </List>
-            <Typography>
+            <Typography css={{ marginBlockStart: 12 }}>
               This doesn't allow you to dirty flash GBoard/Google Clock app, for
               that you need to wipe /data and then flash gapps
             </Typography>
@@ -188,7 +189,9 @@ const Faqs = () => {
               Debloater Zip.
             </Typography>
 
-            <Typography>How to use debloater.config?</Typography>
+            <Typography css={{ fontWeight: 600, marginBlock: 12 }}>
+              How to use debloater.config?
+            </Typography>
             <List>
               <ListItem>
                 Find the package name of the apk (MixPlorer is easy to use)
@@ -232,7 +235,9 @@ const Faqs = () => {
               This is discontinued since newer twrp doesn't work with aroma and
               eventually it will be deprecated
             </Typography>
-            <Typography>More details here</Typography>
+            <Typography css={{ marginBlockStart: 12 }}>
+              More details here
+            </Typography>
           </AccordionContent>
         </AccordionItem>
 
@@ -254,7 +259,9 @@ const Faqs = () => {
             What to do if my contacts are not syncing?
           </AccordionTrigger>
           <AccordionContent>
-            <Typography>Here's How You Can Fix It</Typography>
+            <Typography css={{ fontWeight: 600, marginBlockEnd: 12 }}>
+              Here's How You Can Fix It
+            </Typography>
 
             <List>
               <ListItem>Open Settings app</ListItem>
@@ -274,7 +281,9 @@ const Faqs = () => {
                 can Sync Google Contacts
               </ListItem>
             </List>
-            <Typography>A restart maybe required</Typography>
+            <Typography css={{ marginBlockStart: 12, fontWeight: 600 }}>
+              A restart maybe required
+            </Typography>
           </AccordionContent>
         </AccordionItem>
 
@@ -286,7 +295,11 @@ const Faqs = () => {
               command from adb
             </Typography>
 
-            <Code>adb shell bmgr run bmgr backupnow --all</Code>
+            <Box css={{ marginBlock: 12 }}>
+              <Code>adb shell </Code>
+              <Code>bmgr run</Code>
+              <Code>bmgr backupnow --all</Code>
+            </Box>
 
             <Typography>
               if it's shows Transport error, do bmgr backupnow appdata and

@@ -17,7 +17,7 @@ const dataEndpoint = `https://sourceforge.net/projects/nikgapps/files/stats/json
 
 export const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
-const StatsBox = ({ title, number }) => (
+const StatsBox = ({ title, number, ...props }) => (
   <Box
     css={{
       boxShadow:
@@ -30,7 +30,9 @@ const StatsBox = ({ title, number }) => (
     <Typography variant="h1" as="h4" css={{ color: "$primary" }}>
       {number}
     </Typography>
-    <Typography css={{ color: "$textLight" }}>{title}</Typography>
+    <Typography css={{ color: "$textLight", fontSize: ".88rem" }}>
+      {title}
+    </Typography>
   </Box>
 );
 
@@ -43,7 +45,7 @@ const Stats = () => {
   if (!data)
     return (
       <Box css={{ width: 80, marginInline: "auto", marginBlock: 30 }}>
-        <Audio fill={gray.gray8} />
+        <Audio width="80px" fill={gray.gray8} />
       </Box>
     );
 
@@ -57,6 +59,7 @@ const Stats = () => {
       <Box>
         <Stack gap={2}>
           <StatsBox number={data.total} title="Total downloads so far." />
+
           <StatsBox
             number={`${data.summaries.geo.top} (${data.summaries.geo.percent}%)`}
             title={`Most number of downloads from a geo-location.`}
@@ -81,9 +84,10 @@ const Stats = () => {
               </tr>
             </thead>
             <tbody>
-              {data.countries.slice(0, 30).map((data) => (
-                <tr>
-                  <td>{data[0]}</td> <td>{data[1].toLocaleString()}</td>
+              {data.countries.slice(0, 30).map((data, idx) => (
+                <tr key={idx}>
+                  <td>{data[0]}</td>
+                  <td>{data[1].toLocaleString()}</td>
                 </tr>
               ))}
             </tbody>
@@ -104,9 +108,10 @@ const Stats = () => {
               </tr>
             </thead>
             <tbody>
-              {data.oses.map((data) => (
-                <tr>
-                  <td>{data[0]}</td> <td>{data[1].toLocaleString()}</td>
+              {data.oses.map((data, idx) => (
+                <tr key={idx}>
+                  <td>{data[0]}</td>
+                  <td>{data[1].toLocaleString()}</td>
                 </tr>
               ))}
             </tbody>
@@ -130,7 +135,7 @@ const Stats = () => {
 };
 
 Stats.getLayout = (page) => (
-  <Layout withContent={{ title: "Download Stats" }}>{page}</Layout>
+  <Layout withContent={{ title: "Downloads Stats" }}>{page}</Layout>
 );
 
 export default Stats;
