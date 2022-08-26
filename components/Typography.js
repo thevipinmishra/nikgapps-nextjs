@@ -2,6 +2,10 @@ import { styled } from "../stitches.config";
 
 const Typography = styled("p", {
   fontSize: "1rem",
+  "& a": {
+    color: "$primary",
+    textDecoration: "underline",
+  },
 
   variants: {
     variant: {

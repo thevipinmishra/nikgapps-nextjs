@@ -7,7 +7,8 @@ const Button = styled("button", {
 
   display: "inline-flex",
   justifyContent: "center",
-  alignItems: "baseline",
+  alignItems: "center",
+  gap: ".5em",
   padding: ".5rem 1rem",
   borderRadius: "6px",
   fontWeight: 500,
@@ -26,6 +27,10 @@ const Button = styled("button", {
       small: {
         fontSize: ".88rem",
         padding: ".4rem 1rem",
+      },
+      large: {
+        fontSize: "1rem",
+        padding: ".75rem 1.5rem",
       },
     },
   },
